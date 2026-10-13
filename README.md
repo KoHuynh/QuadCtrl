@@ -74,7 +74,8 @@ To start, let's first define what a typical feedback system looks like:
 * That gets put into a summing-node with the measurement of a feedback sensor to get our error, essentially e(t) = (desired - actual).
 * The error, e(t) then becomes the input into our control algorithm.
 * Our control algorithm then sends an output to our actuators, i.e., in our case, the drone control algorithm factors in to how much/how long the motors should spin, where the actuators are our motors.
-* The actuator output then becomes the input to our plant,  
+* The actuator output then becomes the input to our plant, and our plant is the drone (plant is just what we refer to as being controlled, and that has its own instrinsic properties)
+* The output of the plant then becomes whatever is the current thing we are measuring, for example speed, position, etc., which then gets measured by our sensors and is fed back into the summing node for our reference signal until the desired output is reached, so that e(t) = 0
 
 <img   align="center"  style=" display: block;margin-left: auto;margin-right: auto;width:1000px;border: 5px solid grey;border-radius:20%;
 " src="./images/flightalgo.png">

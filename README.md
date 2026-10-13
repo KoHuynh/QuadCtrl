@@ -169,6 +169,9 @@ Altitude mode also includes automatic landing, auto-land on radio link loss, and
 - [ ] Optical flow velocity hold (PMW3901) to eliminate horizontal drift
 - [ ] UWB positioning (DWM3000) for waypoint navigation without motion capture
 - [ ] Multi-drone coordinated flight
+- [ ] ToF Ring Sensor -> SLAM
+- [ ] Brushless Motor Version for more stable outdoor flight
+- [ ] GPS, RTK -> Drone Shows w/ RGB Lights Add-On
 
 ---
 

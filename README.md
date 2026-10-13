@@ -83,6 +83,8 @@ Now to start, let's first define what a typical feedback system looks like:
 * The output of the plant then becomes whatever is the current thing we are measuring, for example speed, position, etc., which then gets measured by our sensors and is fed back into the summing node for our reference signal until the desired output is reached, so that e(t) = 0
 
 
+###1.
+
 So, how do we measure the orientation of our quadcopter to maintain levelness, or even start moving around? 
 
 To get an estimate of the angle our drone is at, we start with our IMU which measures acceleration in x, y, z axis + gravity to tell which way is down, and Gyroscope is for yaw, pitch, and roll, currently, with this setup, yaw is for rotation about the z axis, pitch is for rotation about the x axis, and roll is for rotation about the y axis, and the gyroscope is measuring how fast the drone is rotating each axis
@@ -100,6 +102,17 @@ if we take into account the gyro rotation rate, we can get an estimate of the cu
 * A complementary filter adds both readings (with a weighted factor) to get an estimate of the attitude, as each loop we predict the angle from part a) with the gyroscope, and then the drone is slowly nudged into the downwards angle given by the accelerometer in part b, with a “weighted factor” since before time =2s(in code), we rely mostly on the gyroscope readings since the estimate is smooth and it ignores vibration and acceleration, and drift would only grow with a factor of t, however, past time , we then mostly rely on the accelerometer’s readings since if a drift has built up, we can nudge the estimate back (not the drone itself) based on the gravity angle, BUT BOTH PLAY A FACTOR FOR ALL TIME, NOT LIKE A HAND OFF. 
 
 The limitation of this IMU for position holding is that IMUs can NOT accurately hold position on their own, we are able to correct for any deviations in “levelness” of the drone, since gravity always points down, allowing us to use the accelerometer to pull the gyroscope angles back towards “level”; however, there is no outside reference for the accelerometer, since nothing tells us where we are, and the IMU does not know where in the room we are. Furthermore, we have to integrate the acceleration to get position twice, meaning that drift will grow with a factor of t^2.
+
+Essentially after all of this, we get an estimated angle that we can use to reference against any desired input
+
+###2.
+
+To move, the transmitter/controller sends stick positions via ESP-NOW over to the drone, wherein the roll and pitch set a target tilt angle to reach, with trim to cancel added drift (think of trim like stick drift wherein the control constantly points in one direction like left, to counteract a drift of the drone always moving right), yaw sets the target turn rate, and throttle sets base thrust
+Below is an example of how the drone can move left, for example, it can spin the upper right and bottom right motors faster, so that the drone tilts and then the drone moves left, once it reaches the target tilt, then the motors even out again so that the drone remains level
+Pitch: speed up one pair (front or rear) and slow the other.
+Roll: do the same with the left and right pairs.
+Yaw: speed up one diagonal pair and slow the other. Diagonal motors spin the same way, so this changes the net twist on the frame without tilting it.
+
 
 
 <br><br>

@@ -68,7 +68,7 @@ Here is a surface-level explanation of the current flight algorithm, to understa
 To start, let's first define what a typical feedback system looks like:
 
 <img   align="center"  style=" display: block;margin-left: auto;margin-right: auto;width:1000px;border: 5px solid grey;border-radius:20%;
-" src="./images/feedbacksystem.png">
+" src="./images/feedbacksystem2.png">
 
 * The reference signal r(t), is what our desired output is, for example a desired position.
 * That gets put into a summing-node with the measurement of a feedback sensor to get our error, essentially e(t) = (desired - actual).

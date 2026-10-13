@@ -13,8 +13,6 @@ QuadCtrl is a ~$30 educational micro-quadcopter designed to teach embedded fligh
   <img src="./images/IMG_6508.gif" width="400" alt="QuadCtrl in flight">
 </p>
 
-First Basic Flight
-
 ---
 
 ## Contents

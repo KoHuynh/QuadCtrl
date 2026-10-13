@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./images/quadctrl_logo_black.png">
-    <img src="./images/quadctrl_logo_black.png" width="600" alt="QuadCtrl">
+    <source media="(prefers-color-scheme: dark)" srcset="./images/quadctrl_logo_black.svg">
+    <img src="./images/quadctrl_logo_black.svg" width="600" alt="QuadCtrl">
   </picture>
 </p>
 

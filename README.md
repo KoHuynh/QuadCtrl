@@ -60,6 +60,7 @@ Below is an image of the drone schematic, with an explanation of the purposes of
 - - -
 
 <br>
+
 ## Flight Algorithm:
 <br>
 
@@ -67,7 +68,7 @@ Here is a surface-level explanation of the current flight algorithm, to understa
 
 
 
-<img   align="center"  style=" display: block;margin-left: auto;margin-right: auto;width:400px;border: 5px solid grey;border-radius:20%;
+<img   align="center"  style=" display: block;margin-left: auto;margin-right: auto;width:800px;border: 5px solid grey;border-radius:20%;
 " src="./images/flightalgo.png">
 
 <br><br>

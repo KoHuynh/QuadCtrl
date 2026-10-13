@@ -1,6 +1,6 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./images/quadctrl_logo_white.png">
+    <source media="(prefers-color-scheme: dark)" srcset="./images/quadctrl_logo_black.png">
     <img src="./images/quadctrl_logo_black.png" width="600" alt="QuadCtrl">
   </picture>
 </p>

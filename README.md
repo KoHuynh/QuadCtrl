@@ -40,7 +40,7 @@ This robot was inspired by the UCSD course, CSE 176E/276E, taught by Professor S
 <br>
 
 ## Electronics:
-<br><br>
+<br>
 Below is an image of the drone schematic, with an explanation of the purposes of most components:
 <img   align="center"  style=" display: block;margin-left: auto;margin-right: auto;width:400px;border: 5px solid grey;border-radius:20%;
 " src="./images/ECE193HQuadCopterShieldSchematicV1.pdf">
@@ -58,4 +58,17 @@ Below is an image of the drone schematic, with an explanation of the purposes of
 <br><br>
 
 - - -
+
 <br>
+## Flight Algorithm:
+<br>
+
+Here is a surface-level explanation of the current flight algorithm:
+
+<img   align="center"  style=" display: block;margin-left: auto;margin-right: auto;width:400px;border: 5px solid grey;border-radius:20%;
+" src="./images/flightalgo">
+
+<br><br>
+
+- - -
+

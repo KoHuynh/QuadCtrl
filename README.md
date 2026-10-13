@@ -65,10 +65,16 @@ Below is an image of the drone schematic, with an explanation of the purposes of
 
 Here is a surface-level explanation of the current flight algorithm, to understand this, it would be helpful to have some basic understanding of feedback control/control theory, but hopefully my explanation will make sense regardless:
 
+To start, let's first define what a typical feedback system looks like:
 
+<img   align="center"  style=" display: block;margin-left: auto;margin-right: auto;width:1000px;border: 5px solid grey;border-radius:20%;
+" src="./images/feedbacksystem.png">
 
-<img   align="center"  style=" display: block;margin-left: auto;margin-right: auto;width:800px;border: 5px solid grey;border-radius:20%;
+The input
+
+<img   align="center"  style=" display: block;margin-left: auto;margin-right: auto;width:1000px;border: 5px solid grey;border-radius:20%;
 " src="./images/flightalgo.png">
+
 
 <br><br>
 

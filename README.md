@@ -44,6 +44,17 @@ This robot was inspired by the UCSD course, CSE 176E/276E, taught by Professor S
 Below is an image of the drone schematic, with an explanation of the purposes of most components:
 <img   align="center"  style=" display: block;margin-left: auto;margin-right: auto;width:400px;border: 5px solid grey;border-radius:20%;
 " src="./images/ECE193HQuadCopterShieldSchematicV1.pdf">
+
+* NMOS acts like a voltage controlled switch, so that when Pin 4 writes HIGH, NMOS turns on which allows current to flow through the motor. 
+
+* Pull down resistor is to hold the MOSFET off when the gate isn’t being driven.
+
+* Flyback diode is there to protect the motors, since motors are a coil, like inductors, they resist sudden changes in current, think how the current of an inductor can’t change instantaneously! So the current in the motor wants to keep flowing even if the NMOS has turned off which means no current flow, with the diode, the current flows through the diode and back into the motor so it slowly dies out safely without feeding back into the NMOS and destroying it. (Because of how fast the mosfets can switch on and off, a schottky diode is recommended and used here because those are able to switch very fast)
+
+* Bulk capacitor (220uF) is there since motors draw a large amount of current when they turn on, which might make the battery supply dip in voltage since they can’t supply that amount instantaneously, so the bulk caps here help supply that burst locally
+
+* Bypass capacitor (1uF) is here so that any high frequency electrical noise here created from the motors is shorted to ground and gets smoothed out
+
 <br><br>
 
 - - -

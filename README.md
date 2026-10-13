@@ -25,8 +25,10 @@ This robot was inspired by the UCSD course, CSE 176E/276E, taught by Professor S
 ## Drone in action:
 
 <p align="center" >
-<img src="./images/Assembly 2 (1).png" /> 
-<img src="./images/ECE193HQuadCopterLEDVersion6 1.png" /> 
+<img   align="center"  style=" display: block;margin-left: auto;margin-right: auto;width:400px;border: 5px solid grey;border-radius:20%;
+" src="./images/Assembly 2 (1).png">
+<img   align="center"  style=" display: block;margin-left: auto;margin-right: auto;width:400px;border: 5px solid grey;border-radius:20%;
+" src="./images/ECE193HQuadCopterLEDVersion6 1.png">
 </p>
 
 <img   align="center"  style=" display: block;margin-left: auto;margin-right: auto;width:400px;border: 5px solid grey;border-radius:20%;

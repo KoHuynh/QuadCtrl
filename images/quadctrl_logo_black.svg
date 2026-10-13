@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 430" width="1040" height="430" role="img" aria-label="QuadCtrl">
+  <title>QuadCtrl</title>
+  <defs>
+    <linearGradient id="pill" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#3a3a3a"/>
+      <stop offset="0.45" stop-color="#161616"/>
+      <stop offset="1" stop-color="#000000"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="ink" gradientUnits="userSpaceOnUse" x1="120" y1="125" x2="920" y2="305">
+      <stop offset="0" stop-color="#bdbdbd"/>
+      <stop offset="0.55" stop-color="#ffffff"/>
+      <stop offset="0.7" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#bdbdbd"/>
+    </linearGradient>
+  </defs>
+
+  <!-- orbit, far side (behind the badge) -->
+  <path d="M-500,0 A500,166 0 0 1 500,0" transform="translate(520 215) rotate(-6)" fill="none" stroke="#8a8a8a" stroke-width="4" stroke-linecap="round" stroke-dasharray="0.1 13" opacity="0.75"/>
+
+  <!-- badge -->
+  <rect x="90" y="95" width="860" height="240" rx="58" fill="url(#pill)" stroke="#5a5a5a" stroke-width="3"/>
+  <rect opacity="1" x="96" y="100" width="848" height="108" rx="52" fill="url(#gloss)"/>
+
+  <!-- emblem -->
+  <g stroke="url(#ink)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <circle cx="216" cy="215" r="88" fill="none"/>
+    <line x1="225.2" y1="224.2" x2="240.7" y2="239.7"/>
+    <circle cx="253.5" cy="252.5" r="18" fill="none" stroke-width="7"/>
+    <line x1="242.2" y1="248.4" x2="264.8" y2="256.6" stroke-width="5"/>
+    <line x1="206.8" y1="224.2" x2="191.3" y2="239.7"/>
+    <circle cx="178.5" cy="252.5" r="18" fill="none" stroke-width="7"/>
+    <line x1="174.4" y1="241.2" x2="182.6" y2="263.8" stroke-width="5"/>
+    <line x1="206.8" y1="205.8" x2="191.3" y2="190.3"/>
+    <circle cx="178.5" cy="177.5" r="18" fill="none" stroke-width="7"/>
+    <line x1="184.5" y1="167.1" x2="172.5" y2="187.9" stroke-width="5"/>
+    <line x1="225.2" y1="205.8" x2="240.7" y2="190.3"/>
+    <circle cx="253.5" cy="177.5" r="18" fill="none" stroke-width="7"/>
+    <line x1="265.3" y1="175.4" x2="241.7" y2="179.6" stroke-width="5"/>
+    <circle cx="216" cy="215" r="13" fill="none"/>
+  </g>
+
+  <!-- wordmark -->
+  <g stroke="url(#ink)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M370,155 H386 A26,26 0 0 1 412,181 V249 A26,26 0 0 1 386,275 H370 A26,26 0 0 1 344,249 V181 A26,26 0 0 1 370,155 Z"/>
+    <path d="M386,249 L420,285"/>
+    <path d="M432,191 V255 A20,20 0 0 0 452,275 H486"/>
+    <path d="M486,191 V275"/>
+    <path d="M560,211 A20,20 0 0 0 540,191 H526 A20,20 0 0 0 506,211 V255 A20,20 0 0 0 526,275 H560"/>
+    <path d="M560,211 V275"/>
+    <path d="M634,191 H600 A20,20 0 0 0 580,211 V255 A20,20 0 0 0 600,275 H634"/>
+    <path d="M634,155 V275"/>
+    <path d="M714,155 H680 A26,26 0 0 0 654,181 V249 A26,26 0 0 0 680,275 H714"/>
+    <path d="M749,163 V257 A18,18 0 0 0 767,275 H777"/>
+    <path d="M737,191 H775"/>
+    <path d="M797,275 V211 A20,20 0 0 1 817,191 H835"/>
+    <path d="M855,155 V257 A18,18 0 0 0 873,275 H877"/>
+  </g>
+
+  <!-- orbit, near side (in front of the badge) -->
+  <path d="M500,0 A500,166 0 0 1 -500,0" transform="translate(520 215) rotate(-6)" fill="none" stroke="#8a8a8a" stroke-width="4" stroke-linecap="round" stroke-dasharray="0.1 13"/>
+
+  <!-- mini drone -->
+  <circle cx="554.7" cy="45.4" r="3.6" fill="#8a8a8a" opacity="0.15"/>
+  <circle cx="589.3" cy="43.3" r="3.6" fill="#8a8a8a" opacity="0.30"/>
+  <circle cx="623.5" cy="42.2" r="3.6" fill="#8a8a8a" opacity="0.45"/>
+  <circle cx="657.2" cy="41.8" r="3.6" fill="#8a8a8a" opacity="0.60"/>
+  <circle cx="690.2" cy="42.4" r="3.6" fill="#8a8a8a" opacity="0.75"/>
+  <g transform="translate(783.7 48.9) rotate(6.6)">
+      <line x1="0" y1="0" x2="-30" y2="-12" stroke="#8a8a8a" stroke-width="5" stroke-linecap="round"/>
+      <line x1="0" y1="0" x2="30" y2="-12" stroke="#8a8a8a" stroke-width="5" stroke-linecap="round"/>
+      <line x1="0" y1="0" x2="-30" y2="12" stroke="#8a8a8a" stroke-width="5" stroke-linecap="round"/>
+      <line x1="0" y1="0" x2="30" y2="12" stroke="#8a8a8a" stroke-width="5" stroke-linecap="round"/>
+      <line x1="-30" y1="-12" x2="-30" y2="-17" stroke="#8a8a8a" stroke-width="4" stroke-linecap="round"/>
+      <ellipse cx="-30" cy="-17" rx="19" ry="5.5" fill="#ffffff" fill-opacity="0.55" stroke="#8a8a8a" stroke-width="2.4"/>
+      <line x1="30" y1="-12" x2="30" y2="-17" stroke="#8a8a8a" stroke-width="4" stroke-linecap="round"/>
+      <ellipse cx="30" cy="-17" rx="19" ry="5.5" fill="#ffffff" fill-opacity="0.55" stroke="#8a8a8a" stroke-width="2.4"/>
+      <line x1="-30" y1="12" x2="-30" y2="7" stroke="#8a8a8a" stroke-width="4" stroke-linecap="round"/>
+      <ellipse cx="-30" cy="7" rx="19" ry="5.5" fill="#ffffff" fill-opacity="0.55" stroke="#8a8a8a" stroke-width="2.4"/>
+      <line x1="30" y1="12" x2="30" y2="7" stroke="#8a8a8a" stroke-width="4" stroke-linecap="round"/>
+      <ellipse cx="30" cy="7" rx="19" ry="5.5" fill="#ffffff" fill-opacity="0.55" stroke="#8a8a8a" stroke-width="2.4"/>
+      <rect x="-15" y="-9" width="30" height="18" rx="7" fill="#111111" stroke="#ffffff" stroke-width="2.5"/>
+      <circle cx="9" cy="0" r="2.6" fill="#ffffff"/>
+  </g>
+</svg>

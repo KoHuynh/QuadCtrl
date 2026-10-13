@@ -1,4 +1,9 @@
-# QuadCtrl
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./images/quadctrl_logo_white.png">
+    <img src="./images/quadctrl_logo_black.png" width="600" alt="QuadCtrl">
+  </picture>
+</p>
 
 **A low-cost micro-quadcopter that makes avionics and flight-control education accessible.**
 

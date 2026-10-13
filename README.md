@@ -89,12 +89,11 @@ To get an estimate of the angle our drone is at, we start with our IMU which mea
 
 Currently, when booting up the drone, the IMU calibrates for a standard “level” measurement for the gyroscope, i.e., place the drone down and leave it still so that it can calibrate for a measurement to achieve, since the readings afterwards subtracted from the offset based on the readings from at rest so it can tell when the drone is level
 
-Afterwards, when the drone is in the air, the IMU is continuously measuring for the change in attitude for the drone, so that it can correct itself 500 times per second::
+Afterwards, when the drone is in the air, the IMU is continuously measuring for the change in attitude for the drone, so that it can correct itself 500 times per second:
 
-* 1) First, the gyroscope and accelerometer readings are passed through a low-pass filter in order to reduce the noise from the motor vibrations 
+* First, the gyroscope and accelerometer readings are passed through a low-pass filter in order to reduce the noise from the motor vibrations 
 The attitude (the vehicle’s orientation), is then estimated by taking into account both the gyro and accelerometer readings, since 
 if we take into account the gyro rotation rate, we can get an estimate of the current angle the drone is at, i.e., think about how if you know your velocity, you can integrate that to get position, i.e. x(t)=x(0)+0tv(t)dt, this is the exact same concept for the gyroscope in that the gyroscope measures angular rate in degrees/sec (t)=(0)+0t(t)dt, however, the weakness of this is that it over time, any small error can get added up, since we are essentially “adding up” over time
-
 
 * At rest, the accelerometer only feels gravity pointing down, so when the drone tilts, that gravity force is then split across the axis, and with trigonometry we can turn that back into an angle, however, the weakness of this alone is that you CAN’T trust the accelerometer readings for short timescales, since if the drone is accelerating sideways, the drone’s acceleration mixes in with the gravity force, leading to the drone to think it’s tilting heavily. 
 

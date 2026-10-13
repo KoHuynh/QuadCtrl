@@ -33,3 +33,18 @@ This robot was inspired by the UCSD course, CSE 176E/276E, taught by Professor S
 
 <img   align="center"  style=" display: block;margin-left: auto;margin-right: auto;width:400px;border: 5px solid grey;border-radius:20%;
 " src="./images/IMG_6508.gif">
+
+
+- - -
+
+<br>
+
+## Electronics:
+<br><br>
+Below is an image of the drone schematic, with an explanation of the purposes of most components:
+<img   align="center"  style=" display: block;margin-left: auto;margin-right: auto;width:400px;border: 5px solid grey;border-radius:20%;
+" src="./images/ECE193HQuadCopterShieldSchematicV1.pdf">
+<br><br>
+
+- - -
+<br>

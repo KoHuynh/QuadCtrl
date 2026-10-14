@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./images/quadctrl_logo_black.svg">
-    <img src="./images/quadctrl_logo_black.svg" width="600" alt="QuadCtrl">
+    <source media="(prefers-color-scheme: dark)" srcset="./images/quadctrl_logo_white.svg">
+    <img src="./images/quadctrl_logo_white.svg" width="600" alt="QuadCtrl">
   </picture>
 </p>
 
@@ -181,6 +181,100 @@ Altitude mode also includes automatic landing, auto-land on radio link loss, and
 - [ ] ToF Ring Sensor -> SLAM
 - [ ] Brushless Motor Version for more stable outdoor flight
 - [ ] GPS, RTK -> Drone Shows w/ RGB Lights Add-On
+
+### Time-of-Flight Rangefinder: Indoor Altitude Hold
+
+A ToF sensor fires short pulses of invisible (940 nm, eye-safe) infrared laser light at the floor and measures how long the reflection takes to return. Since light travels at a known speed, the round-trip time gives the distance:
+
+$$d = \frac{c \cdot t_{\text{round trip}}}{2}$$
+
+Because the drone tilts while flying, the beam hits the floor at a slant, so the reading is corrected to a true vertical height: $h = d\cos\phi\cos\theta$ (roll $\phi$, pitch $\theta$).
+
+**How it is used:** the ToF height is fused with the accelerometer. The ToF is drift-free but slow and noisy (~30 Hz); the accelerometer is fast but drifts. The result is a smooth height and climb-rate estimate. In altitude-hold mode, the **throttle stick becomes a height command** instead of raw thrust. A height loop converts height error into a target climb rate. A climb-rate PI loop then adjusts throttle around the hover point, and its integral term learns the hover throttle automatically.
+
+**Limits:** range of ~1–2 m (VL53L0X) to ~3–4 m (VL53L1X) indoors. Readings degrade in bright sunlight and over very dark or reflective surfaces. A table or step under the drone looks like a sudden change in height.
+
+---
+
+### Barometer (BMP581): Outdoor Altitude Hold
+
+Air pressure decreases as you climb, by about **12 Pa per meter** near sea level. A barometer measures this pressure, and the change since takeoff gives the height *relative* to the takeoff point:
+
+$$h \approx 44330 \left[1 - \left(\frac{P}{P_0}\right)^{1/5.255}\right] \text{ m}$$
+
+where $P_0$ is the pressure measured on the ground before takeoff.
+
+**Why outdoors:** a ToF sensor runs out of range after a few meters, while a barometer works at any height. The BMP581 resolves height changes of roughly ±0.5 m (or better with filtering), which is fine for holding altitude in open air. As with the ToF, the barometer is fused with the accelerometer for a smooth estimate, and it feeds the same altitude-hold controller.
+
+**Limits:** it measures only relative height, and weather changes slowly shift the reference. Propeller downwash and wind gusts cause pressure noise, so the sensor should be shielded with a small piece of foam. It is much less precise than a ToF sensor close to the ground.
+
+---
+
+### Optical Flow Sensor: Indoor Horizontal Position Hold
+
+An optical flow sensor is a tiny, low-resolution camera that takes hundreds of frames per second. It compares consecutive frames internally and outputs how far the image of the floor has shifted, in pixels ($\Delta x, \Delta y$). Dividing by the time between readings gives **pixels per second**: how fast the floor *appears* to slide past.
+
+Each pixel covers a fixed viewing angle (about 1° on a PMW3901), so this "optical flow" is really an **angular rate**: how many radians per second the floor sweeps across the view. The same ground speed looks slower the higher you fly, just as distant objects seem to move slowly from a car window. **That is why height is required**. Multiplying by the ToF height converts flow into real velocity:
+
+$$v \approx (\omega_{\text{flow}} - \omega_{\text{gyro}}) \cdot h$$
+
+The gyro term is important. When the drone simply tilts in place, the floor *appears* to move even though the drone has not translated, so the measured rotation rate is subtracted first.
+
+**How it is used:** with velocity known, a new outer control loop commands tilt angles that drive horizontal velocity to zero when the sticks are centered. This cancels the slow drift that the IMU alone cannot detect.
+
+**Limits:** it needs a textured, well-lit floor; plain or glossy floors and dim rooms fail. It only works within a limited height range (a PMW3901 needs at least ~8 cm). It measures velocity, not absolute position, so small errors still accumulate into slow wandering over time.
+
+---
+
+### GPS + Magnetometer (u-blox SAM-M10Q): Outdoor Position Hold
+
+Optical flow becomes unreliable at greater heights and over uniform outdoor ground such as grass or pavement. Outdoors, GPS provides an **absolute** position that does not drift over time. This matters for holding position and for coordinating multiple drones.
+
+A **magnetometer** (digital compass) is needed alongside GPS. The gyro's yaw estimate slowly drifts, but to correct a position error the drone must know which way its nose points, so it can decide which direction to tilt. The magnetometer provides that absolute heading.
+
+**Limits:**
+- **Accuracy:** a standard module like the [SAM-M10Q](https://www.digikey.com/en/products/detail/u-blox/SAM-M10Q-00B/16672678) is accurate to about **1.5–2 m**. That is fine for a single drone loitering in place, but not for drones flying close together; that requires RTK GPS (centimeter-level).
+- **Update rate:** GPS updates slowly (a few Hz), so it is fused with the IMU for smooth control.
+- **Magnetic interference:** motor currents and the battery distort the magnetometer, so it must be mounted away from power wiring and calibrated.
+- **Weight and wind:** a ~75 g brushed drone struggles in outdoor wind, so outdoor GPS work is best suited to a future **brushless** version of QuadCtrl.
+
+---
+
+### RGB Light Shield: Drone Light Shows
+
+With a ring of RGB LEDs under a translucent diffuser shell, each drone becomes a single glowing "pixel" when seen from a distance at night. With enough drones, each holding a precise position, the swarm can draw shapes and images in the sky.
+
+Beyond the lights themselves, a light show requires:
+- **Precise positioning**: RTK GPS (centimeter-level), since standard GPS is too coarse for drones flying meters apart
+- **Time synchronization**: every drone must execute its path at exactly the right moment, and GPS conveniently provides an accurate time reference
+- **Choreography software**: converts a target image or animation into a collision-free 3D path for each drone
+- **Regulatory approval**: in the US, one pilot or ground station operating multiple drones requires an FAA Part 107 waiver (§107.35)
+
+---
+
+### UWB Positioning (DWM3000): Indoor Swarm Flight
+
+Ultra-wideband (UWB) radio is the indoor counterpart to GPS. Several fixed **anchors** are placed around the room, and the drone carries a **tag**. The tag measures its distance to each anchor by timing radio messages, either by two-way ranging or by time-difference-of-arrival. It then trilaterates its position to about **10 cm**, with at least four anchors needed for 3D.
+
+This is the approach used by Bitcraze's Loco Positioning System for the Crazyflie. Because every drone shares the same anchor coordinate frame, UWB enables **indoor waypoint navigation and coordinated multi-drone (swarm) flight** without an expensive motion-capture system.
+
+**Limits:** the anchors must be installed and surveyed, and accuracy degrades when walls or people block the line of sight. Each module adds weight and power draw (~40–55 mA while active). Optical flow is still useful alongside UWB for smooth, low-noise velocity.
+
+---
+
+### Obstacle Sensing (Lidar / Multi-Zone ToF): Toward Autonomous Flight
+
+To navigate autonomously, the drone must sense its surroundings, not just the floor. Options, from heaviest to lightest:
+
+- **2D 360° lidar** (e.g. LD06/LD19, RPLIDAR C1): a spinning laser that measures distance all the way around the drone, producing a horizontal "slice" of the room. These weigh roughly 40–110 g, too much for the current brushed frame, so they suit a larger brushless version.
+- **Multiple ToF sensors**: four or five VL53L1X sensors facing front, back, left, right, and up. This is the approach of the Crazyflie **Multi-ranger deck**: lightweight and simple, but with only one distance per direction.
+
+- **Multi-zone ToF (VL53L5CX)**: a single tiny sensor that returns an **8×8 grid of distances** over a ~63° field of view, like a very coarse depth camera.
+
+**2.5D, not 3D:** a 2D lidar combined with the downward ToF height sensor gives a horizontal map of the room plus the drone's altitude. This is often called "2.5D". It is not a full 3D map, so obstacles above or below the scan plane can be missed.
+
+**Toward SLAM:** distance scans combined with motion estimates (optical flow and IMU) are the inputs to **SLAM** (Simultaneous Localization and Mapping). In SLAM, the drone builds a map of an unknown room while tracking its own position within that map. Because SLAM is computationally heavy, it would likely run on a laptop or companion computer, with sensor data streamed from the drone and commands sent back.
+
 
 ---
 

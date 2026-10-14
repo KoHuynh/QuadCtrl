@@ -22,7 +22,7 @@ QuadCtrl is a ~$30 educational micro-quadcopter designed to teach embedded fligh
 
 ---
 
-## Contents
+# Contents
 
 - [Features](#features)
 - [Hardware](#hardware)
@@ -38,7 +38,7 @@ QuadCtrl is a ~$30 educational micro-quadcopter designed to teach embedded fligh
 
 ---
 
-## Features
+# Features
 
 - **500 Hz cascaded PID control**: an outer angle loop feeds an inner rate loop on roll and pitch, with heading hold on yaw
 - **Complementary-filter attitude estimation**, with low-pass filtering on the gyro and accelerometer
@@ -47,7 +47,7 @@ QuadCtrl is a ~$30 educational micro-quadcopter designed to teach embedded fligh
 - **Safety features**: link-loss failsafe (auto-land in altitude mode), attitude cutoff, low-battery monitoring, and throttle-low arming
 - **Low cost and simple to build**: off-the-shelf parts, a custom shield PCB, and a 3D-printed frame
 
-## Hardware
+# Hardware
 
 | Component | Details |
 |---|---|
@@ -63,7 +63,7 @@ QuadCtrl is a ~$30 educational micro-quadcopter designed to teach embedded fligh
 
 ---
 
-## Electronics
+# Electronics
 
 The full shield schematic is available here: [ECE193HQuadCopterShieldSchematicV1.pdf](./images/ECE193HQuadCopterShieldSchematicV1.pdf)
 
@@ -79,7 +79,7 @@ Battery monitor: A voltage divider made of two 100 kΩ resistors halves the batt
 
 ---
 
-## Flight Control Algorithm
+# Flight Control Algorithm
 
 This section gives an overview of how QuadCtrl stays level and responds to commands. Some familiarity with feedback control helps, but it is not required.
 
@@ -170,7 +170,7 @@ Altitude mode also includes automatic landing, auto-land on radio link loss, and
 
 ---
 
-## Roadmap
+# Roadmap
 
 - [x] Stabilized flight with cascaded PID
 - [x] Live PID tuning and trim from the transmitter
@@ -278,6 +278,6 @@ To navigate autonomously, the drone must sense its surroundings, not just the fl
 
 ---
 
-## Acknowledgments
+# Acknowledgments
 
 QuadCtrl was inspired by UCSD's **CSE 176E/276E** course taught by **Professor Steven Swanson**. The goal of this project is to streamline that design around the **EnVision Maker Studio ESP32-S3 dev board**. Several filtering and control ideas, such as the 80 Hz gyro filter and yaw heading hold, were informed by the open-source Crazyflie and LiteWing flight firmware.

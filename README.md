@@ -12,8 +12,6 @@
   <img src="https://img.shields.io/badge/ESP--NOW-E7352C?style=for-the-badge&logo=espressif&logoColor=white" />
   <!-- Laptop app, flight logger, simulation -->
   <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" />
-  <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white" />
-  <img src="https://img.shields.io/badge/SciPy-%230C55A5.svg?style=for-the-badge&logo=scipy&logoColor=white" />
   <!-- Hardware & mechanical -->
   <img src="https://img.shields.io/badge/KiCad-314CB0?style=for-the-badge&logo=kicad&logoColor=white" />
 </p>
